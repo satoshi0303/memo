@@ -19,14 +19,17 @@
 <h2>Practice</h2>
 
 <?php
-  try {
-    $db = new PDO('mysql:dbname=mydb;host=localhost;port=8889;charset=utf8',
-    'root','root');
-  } catch(PDOException $e) {
-    echo 'DB接続エラー' . $e->getMessage();
-  }
+require('dbconnect.php');
 
-$memos = $db->query('SELECT * FROM memos WHERE id=1');
+$id = $_REQUEST['id'];
+if(!is_numeric($id) || $id<= 0) {
+  print('１以上の数字で指定してください');
+  exit();
+}
+
+
+$memos = $db->prepare('SELECT * FROM memos WHERE id=?');
+$memos->execute(array($id));
 $memo = $memos->fetch();
 ?>
 

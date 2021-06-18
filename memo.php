@@ -38,6 +38,8 @@ $memo = $memos->fetch();
 
   <a href="update.php?id=<?php print($memo['id']); ?>">編集する</a>
   |
+  <a href="delete.php?id=<?php print($memo['id']); ?>">削除する</a>
+  |
   <a href="index.php">戻る</a>
 </article>
 
